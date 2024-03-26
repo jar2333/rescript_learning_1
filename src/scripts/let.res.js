@@ -7,5 +7,8 @@ function test() {
   console.log("Hello :)");
 }
 
+var name = "Let bindings";
+
+exports.name = name;
 exports.test = test;
 /* No side effect */
