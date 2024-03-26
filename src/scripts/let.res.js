@@ -3,6 +3,7 @@
 
 function test() {
   console.log("hello!");
+  console.log("Hello :)");
 }
 
 export {
