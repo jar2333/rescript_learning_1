@@ -1,0 +1,29 @@
+{
+    "name": "rescript_tutorial_1",
+    "sources": [
+      {
+        "dir": "src",
+        "subdirs": true
+      },
+      {
+       "dir": "__tests__",
+       "type": "dev"
+      }
+    ],
+    "package-specs": [
+      {
+        "module": "es6",
+        "in-source": true
+      }
+    ],
+    "suffix": ".res.js",
+    "bs-dependencies": [
+      "@rescript/core"
+    ],
+    "bs-dev-dependencies": [
+      "@dzakh/rescript-ava"
+    ],
+    "bsc-flags": [
+      "-open RescriptCore"
+    ]
+  }
