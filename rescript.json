@@ -16,9 +16,6 @@
     "bs-dependencies": [
       "@rescript/core"
     ],
-    "bs-dev-dependencies": [
-      "@dzakh/rescript-ava"
-    ],
     "bsc-flags": [
       "-open RescriptCore"
     ]

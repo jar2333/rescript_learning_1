@@ -2,9 +2,8 @@
   "name": "rescript_tutorial_1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.res.js",
   "scripts": {
-    "test": "ava",
     "res:build": "rescript",
     "res:dev": "rescript -w"
   },
@@ -14,15 +13,5 @@
     "@rescript/core": "^1.1.0",
     "rescript": "^11.0.1"
   },
-  "devDependencies": {
-    "@dzakh/rescript-ava": "^2.3.0",
-    "ava": "5.2.x"
-  },
-
-  "ava": {
-     "files": [
-       "__tests__/**/*_test.mjs",
-       "__tests__/**/*_test.bs.js"
-     ]
-   }
+  "type": "module"
 }
