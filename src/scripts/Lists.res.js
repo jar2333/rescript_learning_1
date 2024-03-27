@@ -44,35 +44,49 @@ function test() {
           ]);
       var sorted_left = helper(match[0], mid_point);
       var sorted_right = helper(match[1], len - mid_point | 0);
-      if (sorted_right) {
-        if (sorted_left) {
-          if (Caml_obj.lessequal(sorted_left.hd, sorted_right.hd)) {
-            return Core__List.concat(sorted_left, sorted_right);
-          } else {
-            return Core__List.concat(sorted_right, sorted_left);
-          }
-        } else {
-          return sorted_right;
+      var walk = function (l, r) {
+        if (!r) {
+          return l;
         }
-      } else {
-        return sorted_left;
-      }
+        if (!l) {
+          return r;
+        }
+        var rh = r.hd;
+        var lh = l.hd;
+        if (Caml_obj.lessequal(lh, rh)) {
+          return Core__List.add(walk(l.tl, r), lh);
+        } else {
+          return Core__List.add(walk(l, r.tl), rh);
+        }
+      };
+      return walk(sorted_left, sorted_right);
     };
     return helper(lst, size);
   };
-  console.log(mergeSort({
-            hd: 3,
+  var unsorted_lst = {
+    hd: 3,
+    tl: {
+      hd: 6,
+      tl: {
+        hd: 7,
+        tl: {
+          hd: 2,
+          tl: {
+            hd: 4,
             tl: {
-              hd: 6,
+              hd: 12,
               tl: {
-                hd: 7,
-                tl: {
-                  hd: 2,
-                  tl: /* [] */0
-                }
+                hd: 1,
+                tl: /* [] */0
               }
             }
-          }));
+          }
+        }
+      }
+    }
+  };
+  console.log(Core__List.toArray(unsorted_lst));
+  console.log(Core__List.toArray(mergeSort(unsorted_lst)));
 }
 
 var name = "Lists";

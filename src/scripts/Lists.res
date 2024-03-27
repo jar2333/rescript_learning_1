@@ -23,43 +23,46 @@ let test = () => {
 
 
     // Lets define a merge sort!
-    // let mergeSort: list<'a> => list<'a> = lst => {
-    //     let size = List.length(lst)
+    let mergeSort: list<'a> => list<'a> = lst => {
+        let size = List.length(lst)
 
-    //     let rec helper = (lst, len) => {
-    //         switch lst {
-    //             | list{} | list{_} => lst
-    //             | _ => {
-    //                 let mid_point = len/2
-    //                 let (left, right) = Option.getOr(
-    //                     lst->List.splitAt(mid_point), 
-    //                     (lst, list{})
-    //                 )
-    //                 let sorted_left  = helper(left, mid_point)
-    //                 let sorted_right = helper(right, len - mid_point)
+        let rec helper = (lst, len) => {
+            switch lst {
+                | list{} | list{_} => lst
+                | _ => {
+                    let mid_point = len/2
+                    let (left, right) = Option.getOr(
+                        lst->List.splitAt(mid_point), 
+                        (lst, list{})
+                    )
+                    let sorted_left  = helper(left, mid_point)
+                    let sorted_right = helper(right, len - mid_point)
 
-    //                 switch (sorted_left, sorted_right) {
-    //                     | (_, list{}) => sorted_left
-    //                     | (list{}, _) => sorted_right
-    //                     | (list{lh, ..._}, list{rh, ..._}) => {
-    //                         if lh <= rh {
-    //                             List.concat(sorted_left, sorted_right)
-    //                         }
-    //                         else {
-    //                             List.concat(sorted_right, sorted_left)
-    //                         }
+                    // Walk both lists element by element, rearranging based on comparison
+                    let rec walk = (l, r) => {
+                        switch (l, r) {
+                            | (_, list{}) => l
+                            | (list{}, _) => r
+                            | (list{lh, ...lxs}, list{rh, ...rxs}) => {
+                                if lh <= rh {
+                                    walk(lxs, r)->List.add(lh)
+                                }
+                                else {
+                                    walk(l, rxs)->List.add(rh)
+                                }
+                            }
+                        }
+                    }
+                    walk(sorted_left, sorted_right)
+                } 
+            }
+        }
+        helper(lst, size)
+    }
 
-    //                     }
-    //                 }
-    //             } 
-    //         }
-    //     }
-
-    //     helper(lst, size)
-    // }
-
-    // let unsorted_lst = list{3, 6, 7, 2}
-    // Console.log(mergeSort(unsorted_lst))
+    let unsorted_lst = list{3, 6, 7, 2, 4, 12, 1}
+    Console.log(unsorted_lst->List.toArray)
+    Console.log(mergeSort(unsorted_lst)->List.toArray)
 
     ()
 }
