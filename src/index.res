@@ -20,4 +20,6 @@ module MakeRunnable = (M : Test) => {
 module L = MakeRunnable(Let)
 L.run()
 
+module T = MakeRunnable(Types)
+T.run()
 

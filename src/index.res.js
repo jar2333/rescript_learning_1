@@ -2,6 +2,7 @@
 'use strict';
 
 var Let = require("./scripts/Let.res.js");
+var Types = require("./scripts/Types.res.js");
 
 function MakeRunnable(M) {
   var run = function () {
@@ -28,6 +29,20 @@ var L = {
 
 run();
 
+function run$1() {
+  console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+  console.log("Running test: " + Types.name);
+  Types.test();
+  console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+}
+
+var T = {
+  run: run$1
+};
+
+run$1();
+
 exports.MakeRunnable = MakeRunnable;
 exports.L = L;
+exports.T = T;
 /*  Not a pure module */
