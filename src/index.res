@@ -26,3 +26,7 @@ T.run()
 module A = MakeRunnable(Arrays)
 A.run()
 
+module Li = MakeRunnable(Lists)
+Li.run()
+
+

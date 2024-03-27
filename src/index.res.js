@@ -2,6 +2,7 @@
 'use strict';
 
 var Let = require("./scripts/Let.res.js");
+var Lists = require("./scripts/Lists.res.js");
 var Types = require("./scripts/Types.res.js");
 var Arrays = require("./scripts/Arrays.res.js");
 
@@ -56,8 +57,22 @@ var A = {
 
 run$2();
 
+function run$3() {
+  console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+  console.log("Running test: " + Lists.name);
+  Lists.test();
+  console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+}
+
+var Li = {
+  run: run$3
+};
+
+run$3();
+
 exports.MakeRunnable = MakeRunnable;
 exports.L = L;
 exports.T = T;
 exports.A = A;
+exports.Li = Li;
 /*  Not a pure module */
