@@ -67,12 +67,11 @@ let test = () => {
             arr
         }
         else {
-                let pivot  = arr.getUnsafe(length(arr) / 2) 
-                let left   = arr->filter(e => e < pivot)
-                let middle = arr->filter(e => e == pivot) 
-                let right  = arr->filter(e => e > pivot)
-                quickSort(left)->concat(quickSort(middle))->concat(quickSort(right))
-            }
+            let pivot  = arr.getUnsafe(length(arr) / 2) 
+            let left   = arr->filter(e => e < pivot)
+            let middle = arr->filter(e => e == pivot) 
+            let right  = arr->filter(e => e > pivot)
+            quickSort(left)->concat(quickSort(middle))->concat(quickSort(right))
         }
     }
 
