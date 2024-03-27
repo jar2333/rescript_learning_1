@@ -23,3 +23,6 @@ L.run()
 module T = MakeRunnable(Types)
 T.run()
 
+module A = MakeRunnable(Arrays)
+A.run()
+

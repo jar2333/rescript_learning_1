@@ -3,6 +3,7 @@
 
 var Let = require("./scripts/Let.res.js");
 var Types = require("./scripts/Types.res.js");
+var Arrays = require("./scripts/Arrays.res.js");
 
 function MakeRunnable(M) {
   var run = function () {
@@ -42,7 +43,21 @@ var T = {
 
 run$1();
 
+function run$2() {
+  console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+  console.log("Running test: " + Arrays.name);
+  Arrays.test();
+  console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+}
+
+var A = {
+  run: run$2
+};
+
+run$2();
+
 exports.MakeRunnable = MakeRunnable;
 exports.L = L;
 exports.T = T;
+exports.A = A;
 /*  Not a pure module */
