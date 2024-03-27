@@ -61,13 +61,13 @@ let test = () => {
     // NOTE: Having more than 7 elements in the array blows up the call stack. Why? Is this THAT bloated?
     Console.log("Quick sort using filters/concats")
 
-    let rec quickSort = arr => {
+    let rec quickSort = (arr) => {
         open Array
         if length(arr) <= 1 {
             arr
         }
         else {
-            let pivot  = arr.getUnsafe(length(arr) / 2) 
+            let pivot  = arr->getUnsafe(length(arr) / 2) 
             let left   = arr->filter(e => e < pivot)
             let middle = arr->filter(e => e == pivot) 
             let right  = arr->filter(e => e > pivot)

@@ -2,7 +2,6 @@
 'use strict';
 
 var Caml_obj = require("rescript/lib/js/caml_obj.js");
-var Caml_option = require("rescript/lib/js/caml_option.js");
 var Core__Array = require("@rescript/core/src/Core__Array.res.js");
 
 function test() {
@@ -72,18 +71,14 @@ function test() {
       return arr;
     }
     var pivot = arr[arr.length / 2 | 0];
-    if (pivot === undefined) {
-      return arr;
-    }
-    var pivot$1 = Caml_option.valFromOption(pivot);
     var left = arr.filter(function (e) {
-          return Caml_obj.lessthan(e, pivot$1);
+          return Caml_obj.lessthan(e, pivot);
         });
     var middle = arr.filter(function (e) {
-          return Caml_obj.equal(e, pivot$1);
+          return Caml_obj.equal(e, pivot);
         });
     var right = arr.filter(function (e) {
-          return Caml_obj.greaterthan(e, pivot$1);
+          return Caml_obj.greaterthan(e, pivot);
         });
     return quickSort(left).concat(quickSort(middle)).concat(quickSort(right));
   };
