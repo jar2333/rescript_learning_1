@@ -10,7 +10,7 @@ let test = () => {
     Console.log(fst_lst)
 
     // NOTE: NO CONS OPERATOR???? NO WAY
-    // Bug I encountered and had issues debugging: was returning lst: list<'a>, and checker was still okaying the function. sus.
+    // I encountered a bug and had issues debugging: was returning lst: list<'a>, and checker was still okaying the function. sus.
     let rec fmap: (list<'a>, 'a => 'b) => list<'b> = (lst: list<'a>, f: 'a => 'b) => {
         switch lst {
             | list{} => list{}

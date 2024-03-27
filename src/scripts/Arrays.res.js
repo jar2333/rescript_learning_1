@@ -4,7 +4,6 @@
 var Caml_obj = require("rescript/lib/js/caml_obj.js");
 var Caml_option = require("rescript/lib/js/caml_option.js");
 var Core__Array = require("@rescript/core/src/Core__Array.res.js");
-var Core__Option = require("@rescript/core/src/Core__Option.res.js");
 
 function test() {
   var arr = [
@@ -38,28 +37,19 @@ function test() {
         return String(v) + ": " + "a".repeat(v);
       });
   console.log(d);
+  console.log("Imperative insertion sort (featuring getUnsafe & setUnsafe):");
   var insertionSort = function (arr) {
     var n = arr.length;
-    var j = {
-      contents: 0
-    };
-    var key = {
-      contents: 0
-    };
+    var j = 0;
+    var key = 0;
     for(var i = 1; i < n; ++i){
-      Core__Option.mapOr(arr[i], undefined, (function (v) {
-              key.contents = v;
-            }));
-      j.contents = i - 1 | 0;
-      while(j.contents >= 0 && Core__Option.mapOr(arr[j.contents], false, (function (v) {
-                return v > key.contents;
-              }))) {
-        Core__Option.mapOr(arr[j.contents], undefined, (function (extra) {
-                arr[j.contents + 1 | 0] = extra;
-              }));
-        j.contents = j.contents - 1 | 0;
+      key = arr[i];
+      j = i - 1 | 0;
+      while(j >= 0 && arr[j] > key) {
+        arr[j + 1 | 0] = arr[j];
+        j = j - 1 | 0;
       };
-      arr[j.contents + 1 | 0] = key.contents;
+      arr[j + 1 | 0] = key;
     }
   };
   var unsorted_arr = [
@@ -76,6 +66,7 @@ function test() {
   console.log(unsorted_arr);
   insertionSort(unsorted_arr);
   console.log(unsorted_arr);
+  console.log("Quick sort using filters/concats");
   var quickSort = function (arr) {
     if (arr.length <= 1) {
       return arr;

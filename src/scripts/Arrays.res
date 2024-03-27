@@ -28,31 +28,26 @@ let test = () => {
 
     // Lets even try some imperative algos:
     // Note: Circumventing the fact array access returns an Optional is a pain, but it's doable
+    Console.log("Imperative insertion sort (featuring getUnsafe & setUnsafe):")
+
     let insertionSort = (arr: array<int>) => {
-        let n = Array.length(arr)
+        open Array
+
+        let n = length(arr)
 
         let j = ref(0)
         let key = ref(0)
         for i in 1 to n-1 {
-            Option.mapOr(
-                arr[i],
-                (),
-                v => key := v
-            )
+            key := arr->getUnsafe(i)
             j := i - 1
 
             // Move elements of arr[0..i-1] that are greater than key 
             // to one position ahead of their current position
-            while (j.contents >= 0 && Option.mapOr(arr[j.contents], false, v => v > key.contents)) {
-                Option.mapOr(
-                    arr[j.contents], 
-                    (), 
-                    Array.set(arr, j.contents + 1, ...)
-                )
-
+            while (j.contents >= 0 && arr->getUnsafe(j.contents) > key.contents) {
+                arr->set(j.contents + 1, arr->getUnsafe(j.contents))
                 j := j.contents - 1
             }
-            arr[j.contents + 1] = key.contents;
+            arr->setUnsafe(j.contents + 1, key.contents);
         }
     }
 
@@ -64,19 +59,19 @@ let test = () => {
     // By contrast, look at a quick sort:
     // We still suffer from the uglyness of Options
     // NOTE: Having more than 7 elements in the array blows up the call stack. Why? Is this THAT bloated?
+    Console.log("Quick sort using filters/concats")
+
     let rec quickSort = arr => {
-        if Array.length(arr) <= 1 {
+        open Array
+        if length(arr) <= 1 {
             arr
         }
         else {
-            switch arr[Array.length(arr) / 2] {
-                | Some(pivot) => {
-                    let left   = arr->Array.filter(e => e < pivot)
-                    let middle = arr->Array.filter(e => e == pivot) 
-                    let right  = arr->Array.filter(e => e > pivot)
-                    quickSort(left)->Array.concat(quickSort(middle))->Array.concat(quickSort(right))
-                }
-                | None => arr
+                let pivot  = arr.getUnsafe(length(arr) / 2) 
+                let left   = arr->filter(e => e < pivot)
+                let middle = arr->filter(e => e == pivot) 
+                let right  = arr->filter(e => e > pivot)
+                quickSort(left)->concat(quickSort(middle))->concat(quickSort(right))
             }
         }
     }
