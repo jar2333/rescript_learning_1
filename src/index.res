@@ -32,4 +32,6 @@ Li.run()
 module Fs = MakeRunnable(Functions)
 Fs.run()
 
+module Ex = MakeRunnable(Exceptions)
+Ex.run()
 

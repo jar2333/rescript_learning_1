@@ -1,6 +1,6 @@
 let name: string = "Let bindings"
 
-let test: () => unit = () => {
+let test = () => {
     // Let binding
     let greeting = "hello!"
     Console.log(greeting)

@@ -2,23 +2,6 @@
 'use strict';
 
 
-function pretty_print(t) {
-  var helper = function (count, t) {
-    var ind = "    ".repeat(count);
-    var print_children = function (ch) {
-      if (ch.length === 0) {
-        return "[]";
-      }
-      var rest = ch.map(function (extra) {
-              return helper(count + 1 | 0, extra);
-            }).join(",\n" + ind);
-      return "\r\n                    [\r\n                    " + ind + "    " + rest + "\r\n                    ]\r\n                    ";
-    };
-    return "\r\n        " + ind + "{\r\n        " + ind + "    val: " + t.val + "\r\n        " + ind + "    children: " + print_children(t.children) + "\r\n        " + ind + "}\r\n        ";
-  };
-  return helper(0, t);
-}
-
 function test() {
   console.log(10);
   console.log([
@@ -59,6 +42,5 @@ function test() {
 var name = "Types";
 
 exports.name = name;
-exports.pretty_print = pretty_print;
 exports.test = test;
 /* No side effect */

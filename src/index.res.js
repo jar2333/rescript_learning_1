@@ -6,6 +6,7 @@ var Lists = require("./scripts/Lists.res.js");
 var Types = require("./scripts/Types.res.js");
 var Arrays = require("./scripts/Arrays.res.js");
 var Functions = require("./scripts/Functions.res.js");
+var Exceptions = require("./scripts/Exceptions.res.js");
 
 function MakeRunnable(M) {
   var run = function () {
@@ -84,10 +85,24 @@ var Fs = {
 
 run$4();
 
+function run$5() {
+  console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+  console.log("Running test: " + Exceptions.name);
+  Exceptions.test();
+  console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+}
+
+var Ex = {
+  run: run$5
+};
+
+run$5();
+
 exports.MakeRunnable = MakeRunnable;
 exports.L = L;
 exports.T = T;
 exports.A = A;
 exports.Li = Li;
 exports.Fs = Fs;
+exports.Ex = Ex;
 /*  Not a pure module */

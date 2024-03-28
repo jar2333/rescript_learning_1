@@ -8,39 +8,6 @@ type rec tree<'a> = {
   children: array<tree<'a>>
 }
 
-// Figure out currying so I can add an indent counter here!!!
-let pretty_print = (t) => {
-    let base = "    "
-    let rec helper = (count: int, t: tree<string>): string => {
-        let {val: v, children: ch} = t
-
-        let ind = String.repeat(base, count)
-
-        let print_children = (ch) => {
-            switch ch {
-                | [] => "[]"
-                | _  => {
-                    let rest = ch->
-                                Array.map(helper(count+1, ...))->
-                                Array.joinWith(`,\n${ind}`)
-                    `
-                    [
-                    ${ind}    ${rest}
-                    ]
-                    `
-                }
-            }
-        }
-        `
-        ${ind}{
-        ${ind}    val: ${v}
-        ${ind}    children: ${print_children(ch)}
-        ${ind}}
-        `
-    }
-    helper(0, t)
-}
-
 let test = () => {
 
     // Type alias
