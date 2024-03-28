@@ -30,7 +30,7 @@ let test = () => {
     // Note: Circumventing the fact array access returns an Optional is a pain, but it's doable
     Console.log("Imperative insertion sort (featuring getUnsafe & setUnsafe):")
 
-    let insertionSort = (arr: array<int>) => {
+    let insertionSort = (arr: array<int>): unit => {
         open Array
 
         let n = length(arr)
@@ -61,7 +61,7 @@ let test = () => {
     // NOTE: Having more than 7 elements in the array blows up the call stack. Why? Is this THAT bloated?
     Console.log("Quick sort using filters/concats")
 
-    let rec quickSort = (arr) => {
+    let rec quickSort = (arr: array<'a>): array<'a> => {
         open Array
         if length(arr) <= 1 {
             arr

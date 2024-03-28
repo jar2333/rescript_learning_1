@@ -11,7 +11,7 @@ type rec tree<'a> = {
 // Figure out currying so I can add an indent counter here!!!
 let pretty_print = (t) => {
     let base = "    "
-    let rec helper: (int, tree<string>) => string = (count, t) => {
+    let rec helper = (count: int, t: tree<string>): string => {
         let {val: v, children: ch} = t
 
         let ind = String.repeat(base, count)
@@ -54,7 +54,7 @@ let test = () => {
     Console.log(v)
 
     // Recursive trees
-    let rec fmap: (('a => 'b), tree<'a>) => tree<'b> = (f, t) => {
+    let rec fmap = (f: 'a => 'b, t: tree<'a>): tree<'b> => {
         let {val: v, children: c} = t
         {
             val: f(v),

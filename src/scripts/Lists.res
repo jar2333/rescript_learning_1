@@ -11,7 +11,7 @@ let test = () => {
 
     // NOTE: NO CONS OPERATOR???? NO WAY
     // I encountered a bug and had issues debugging: was returning lst: list<'a>, and checker was still okaying the function. sus.
-    let rec fmap: (list<'a>, 'a => 'b) => list<'b> = (lst: list<'a>, f: 'a => 'b) => {
+    let rec fmap = (lst: list<'a>, f: 'a => 'b): list<'b> => {
         switch lst {
             | list{} => list{}
             | list{hd, ...xs} => (List.add(fmap(xs, f), f(hd)) : list<'b>)
@@ -23,7 +23,7 @@ let test = () => {
 
 
     // Lets define a merge sort!
-    let mergeSort: list<'a> => list<'a> = lst => {
+    let mergeSort = (lst: list<'a>): list<'a>  => {
         let size = List.length(lst)
 
         let rec helper = (lst, len) => {
