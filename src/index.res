@@ -29,4 +29,7 @@ A.run()
 module Li = MakeRunnable(Lists)
 Li.run()
 
+module Fs = MakeRunnable(Functions)
+Fs.run()
+
 
