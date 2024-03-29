@@ -3,7 +3,7 @@ let name = __MODULE__
 type worker = {
   name: string,
   job: string,
-  happy: boolean
+  happy: bool
 }
 
 type user = {
@@ -93,7 +93,7 @@ let test = () => {
 
     // Like optional function arguments, this ends up as syntactic sugar over an option type
     // For the purposes of pattern matching the field itself, you treat it as an optional
-    let check_email = (u) => switch u.email {
+    let check_email = (u: user) => switch u.email {
         | Some(e) => Console.log("email: "++e)
         | None => Console.log("no email")
     }
@@ -102,7 +102,7 @@ let test = () => {
 
 
     // However, when pattern matching the whole record, it is treated as the underlying type
-    let is_woofdog = (u) => switch u {
+    let is_woofdog = (u: user) => switch u {
         | {username:_, displayname: _, email:"woof@dog.net"} => true
         | _ => false
     }
@@ -110,7 +110,7 @@ let test = () => {
     is_woofdog(user5)->Console.log
 
     // As before, you can use ? to actually match on the underlying option
-    let has_email = (u) => switch u {
+    let has_email = (u: user) => switch u {
         | {username:_, displayname:_, email:?None} => false
         | _ => true
     }
@@ -124,7 +124,9 @@ let test = () => {
         displayname: "Jonesy Montserrat",
         name: "Jonathan Alouette Montserrat",
         happy: false,
-        email: "jamo@hotmail.com"
+        email: "jamo@hotmail.com",
+        job: "Senior Developer",
+        resume_link: "https://storage.org/rhtrwe3rwrglknebjswejgjlrg"
     }
 
     // You can coerce a record type to another iff they both share the same fields of the same types
@@ -143,7 +145,7 @@ let test = () => {
         }
     } 
     // We coerce tomato to be of type fruit >:)
-    evaluate_vegetable(tomato :> fruit)
+    evaluate_fruit(tomato :> fruit)
 
 
     // We can generally coerce a record type to another if the type's fields are a superset of the target record type's

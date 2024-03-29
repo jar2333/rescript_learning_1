@@ -5,6 +5,7 @@ var Let = require("./scripts/Let.res.js");
 var Lists = require("./scripts/Lists.res.js");
 var Types = require("./scripts/Types.res.js");
 var Arrays = require("./scripts/Arrays.res.js");
+var Records = require("./scripts/Records.res.js");
 var Functions = require("./scripts/Functions.res.js");
 var Exceptions = require("./scripts/Exceptions.res.js");
 
@@ -98,6 +99,19 @@ var Ex = {
 
 run$5();
 
+function run$6() {
+  console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+  console.log("Running test: " + Records.name);
+  Records.test();
+  console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+}
+
+var Rs = {
+  run: run$6
+};
+
+run$6();
+
 exports.MakeRunnable = MakeRunnable;
 exports.L = L;
 exports.T = T;
@@ -105,4 +119,5 @@ exports.A = A;
 exports.Li = Li;
 exports.Fs = Fs;
 exports.Ex = Ex;
+exports.Rs = Rs;
 /*  Not a pure module */
