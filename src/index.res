@@ -35,3 +35,6 @@ Fs.run()
 module Ex = MakeRunnable(Exceptions)
 Ex.run()
 
+module Rs = MakeRunnable(Records)
+Rs.run()
+
